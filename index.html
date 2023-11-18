@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santa's Gift Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #santa-bag {
+            max-width: 100%;
+            height: auto;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Santa's Gift Game</h1>
+
+    <button onclick="revealGift()">Click here to reveal your gift</button>
+
+    <div id="gift-container">
+        <img id="santa-bag" src="santa-bag.jpg" alt="Santa's Bag">
+    </div>
+
+    <script>
+        // Array of different presents
+        const presents = [
+            'present1.jpg',
+            'present2.jpg',
+            'present3.jpg',
+            // Add more present images as needed
+        ];
+
+        // Function to reveal a random gift
+        function revealGift() {
+            // Get a random index from the presents array
+            const randomIndex = Math.floor(Math.random() * presents.length);
+
+            // Get the image container and set the source of the image
+            const giftContainer = document.getElementById('gift-container');
+            const santaBag = document.getElementById('santa-bag');
+            santaBag.src = presents[randomIndex];
+
+            // Display the image
+            santaBag.style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
