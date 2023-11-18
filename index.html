@@ -13,7 +13,20 @@
         #santa-bag {
             max-width: 100%;
             height: auto;
-            display: none;
+            cursor: pointer;
+        }
+        #present-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .present {
+            max-width: 100px;
+            height: auto;
+            cursor: pointer;
+        }
+        #selected-present {
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -21,33 +34,42 @@
 
     <h1>Santa's Gift Game</h1>
 
-    <button onclick="revealGift()">Click here to reveal your gift</button>
+    <img id="santa-bag" src="santa-bag.jpg" alt="Santa's Bag" onclick="revealPresent()">
 
-    <div id="gift-container">
-        <img id="santa-bag" src="santa-bag.jpg" alt="Santa's Bag">
+    <div id="present-container">
+        <img class="present" src="toy-train.jpg" alt="Toy Train" onclick="selectPresent('Toy Train')">
+        <img class="present" src="teddy-bear.jpg" alt="Teddy Bear" onclick="selectPresent('Teddy Bear')">
+        <img class="present" src="gift-box.jpg" alt="Gift Box" onclick="selectPresent('Gift Box')">
+        <img class="present" src="parent-joke.jpg" alt="Parent Joke" onclick="selectPresent('Parent Joke')">
+        <img class="present" src="empty-box.jpg" alt="Empty Box" onclick="selectPresent('Empty Box')">
+        <!-- Add more present images as needed -->
     </div>
 
+    <p id="selected-present"></p>
+
     <script>
-        // Array of different presents
         const presents = [
-            'present1.jpg',
-            'present2.jpg',
-            'present3.jpg',
-            // Add more present images as needed
+            'Toy Train',
+            'Teddy Bear',
+            'Gift Box',
+            'Parent Joke',
+            'Empty Box'
+            // Add more present names as needed
         ];
 
-        // Function to reveal a random gift
-        function revealGift() {
-            // Get a random index from the presents array
-            const randomIndex = Math.floor(Math.random() * presents.length);
+        function revealPresent() {
+            const presentContainer = document.getElementById('present-container');
+            presentContainer.style.display = 'flex'; // Display presents when Santa's bag is clicked
+        }
 
-            // Get the image container and set the source of the image
-            const giftContainer = document.getElementById('gift-container');
-            const santaBag = document.getElementById('santa-bag');
-            santaBag.src = presents[randomIndex];
+        function selectPresent(present) {
+            const selectedPresent = document.getElementById('selected-present');
 
-            // Display the image
-            santaBag.style.display = 'block';
+            if (present === 'Empty Box') {
+                selectedPresent.innerText = 'Uh-oh! You got no present! Naughty list, perhaps?';
+            } else {
+                selectedPresent.innerText = `You got a ${present}!`;
+            }
         }
     </script>
 
